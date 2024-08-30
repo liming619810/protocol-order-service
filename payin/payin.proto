@@ -31,6 +31,7 @@ message PayinRequest {
 
   message Paymentdetail {
     string paymentMethodType = 1;
+    string TargetOrg = 4;
     Cardinfo cardInfo = 2;
     Buyerinfo buyerInfo = 3;
   }
