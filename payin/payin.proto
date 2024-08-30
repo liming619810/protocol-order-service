@@ -84,7 +84,7 @@ message PayinRequest {
   string merchantNo = 1;
   string outTradeNo = 2;
   string subject = 3;
-  uint32 totalAmount = 4;
+  string totalAmount = 4;
   string currency = 5;
   string country = 6;
   string userId = 7;
