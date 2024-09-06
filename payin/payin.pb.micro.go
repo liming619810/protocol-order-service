@@ -39,6 +39,7 @@ type PayinService interface {
 	// 新增 收单
 	OrderAndPay(ctx context.Context, in *PayinRequest, opts ...client.CallOption) (*PayinResponse, error)
 	OrderQuery(ctx context.Context, in *PayinQueryRequest, opts ...client.CallOption) (*PayinQueryResponse, error)
+	OrderQueryPage(ctx context.Context, in *PayinQueryPageRequest, opts ...client.CallOption) (*PayinQueryPageResponse, error)
 }
 
 type payinService struct {
@@ -73,18 +74,30 @@ func (c *payinService) OrderQuery(ctx context.Context, in *PayinQueryRequest, op
 	return out, nil
 }
 
+func (c *payinService) OrderQueryPage(ctx context.Context, in *PayinQueryPageRequest, opts ...client.CallOption) (*PayinQueryPageResponse, error) {
+	req := c.c.NewRequest(c.name, "Payin.OrderQueryPage", in)
+	out := new(PayinQueryPageResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Payin service
 
 type PayinHandler interface {
 	// 新增 收单
 	OrderAndPay(context.Context, *PayinRequest, *PayinResponse) error
 	OrderQuery(context.Context, *PayinQueryRequest, *PayinQueryResponse) error
+	OrderQueryPage(context.Context, *PayinQueryPageRequest, *PayinQueryPageResponse) error
 }
 
 func RegisterPayinHandler(s server.Server, hdlr PayinHandler, opts ...server.HandlerOption) error {
 	type payin interface {
 		OrderAndPay(ctx context.Context, in *PayinRequest, out *PayinResponse) error
 		OrderQuery(ctx context.Context, in *PayinQueryRequest, out *PayinQueryResponse) error
+		OrderQueryPage(ctx context.Context, in *PayinQueryPageRequest, out *PayinQueryPageResponse) error
 	}
 	type Payin struct {
 		payin
@@ -103,4 +116,8 @@ func (h *payinHandler) OrderAndPay(ctx context.Context, in *PayinRequest, out *P
 
 func (h *payinHandler) OrderQuery(ctx context.Context, in *PayinQueryRequest, out *PayinQueryResponse) error {
 	return h.PayinHandler.OrderQuery(ctx, in, out)
+}
+
+func (h *payinHandler) OrderQueryPage(ctx context.Context, in *PayinQueryPageRequest, out *PayinQueryPageResponse) error {
+	return h.PayinHandler.OrderQueryPage(ctx, in, out)
 }
