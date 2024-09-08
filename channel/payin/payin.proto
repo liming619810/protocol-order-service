@@ -12,7 +12,7 @@ service payin {
 
 message PayinQueryToExecuteRequest {
   int32 count = 1;
-  string merchantNo = 2;
+  int64 merchantNo = 2;
   repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
   int64 createBegin = 4;
   int64 createEnd = 5;
