@@ -1,11 +1,10 @@
 syntax = "proto3";
 
-package order.payin;
+package order.payinchannel;
 
-option go_package = "../payin";
+option go_package = "../payinchannel";
 
 service payin {
-  // 新增 收单
   rpc QueryToExecute(PayinQueryToExecuteRequest)
       returns (PayinQueryToExecuteResponse) {}
 }
