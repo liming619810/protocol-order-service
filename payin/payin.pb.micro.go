@@ -40,7 +40,6 @@ type PayinService interface {
 	OrderAndPay(ctx context.Context, in *PayinRequest, opts ...client.CallOption) (*PayinResponse, error)
 	OrderQuery(ctx context.Context, in *PayinQueryRequest, opts ...client.CallOption) (*PayinQueryResponse, error)
 	OrderQueryPage(ctx context.Context, in *PayinQueryPageRequest, opts ...client.CallOption) (*PayinQueryPageResponse, error)
-	QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, opts ...client.CallOption) (*PayinQueryToExecuteResponse, error)
 }
 
 type payinService struct {
@@ -85,16 +84,6 @@ func (c *payinService) OrderQueryPage(ctx context.Context, in *PayinQueryPageReq
 	return out, nil
 }
 
-func (c *payinService) QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, opts ...client.CallOption) (*PayinQueryToExecuteResponse, error) {
-	req := c.c.NewRequest(c.name, "Payin.QueryToExecute", in)
-	out := new(PayinQueryToExecuteResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for Payin service
 
 type PayinHandler interface {
@@ -102,7 +91,6 @@ type PayinHandler interface {
 	OrderAndPay(context.Context, *PayinRequest, *PayinResponse) error
 	OrderQuery(context.Context, *PayinQueryRequest, *PayinQueryResponse) error
 	OrderQueryPage(context.Context, *PayinQueryPageRequest, *PayinQueryPageResponse) error
-	QueryToExecute(context.Context, *PayinQueryToExecuteRequest, *PayinQueryToExecuteResponse) error
 }
 
 func RegisterPayinHandler(s server.Server, hdlr PayinHandler, opts ...server.HandlerOption) error {
@@ -110,7 +98,6 @@ func RegisterPayinHandler(s server.Server, hdlr PayinHandler, opts ...server.Han
 		OrderAndPay(ctx context.Context, in *PayinRequest, out *PayinResponse) error
 		OrderQuery(ctx context.Context, in *PayinQueryRequest, out *PayinQueryResponse) error
 		OrderQueryPage(ctx context.Context, in *PayinQueryPageRequest, out *PayinQueryPageResponse) error
-		QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, out *PayinQueryToExecuteResponse) error
 	}
 	type Payin struct {
 		payin
@@ -133,8 +120,4 @@ func (h *payinHandler) OrderQuery(ctx context.Context, in *PayinQueryRequest, ou
 
 func (h *payinHandler) OrderQueryPage(ctx context.Context, in *PayinQueryPageRequest, out *PayinQueryPageResponse) error {
 	return h.PayinHandler.OrderQueryPage(ctx, in, out)
-}
-
-func (h *payinHandler) QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, out *PayinQueryToExecuteResponse) error {
-	return h.PayinHandler.QueryToExecute(ctx, in, out)
 }

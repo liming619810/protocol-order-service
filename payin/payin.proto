@@ -9,36 +9,6 @@ service payin {
   rpc OrderAndPay(PayinRequest) returns (PayinResponse) {}
   rpc OrderQuery(PayinQueryRequest) returns (PayinQueryResponse) {}
   rpc OrderQueryPage(PayinQueryPageRequest) returns (PayinQueryPageResponse) {}
-  rpc QueryToExecute(PayinQueryToExecuteRequest)
-      returns (PayinQueryToExecuteResponse) {}
-}
-
-message PayinQueryToExecuteRequest {
-  int32 count = 1;
-  string merchantNo = 2;
-  repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
-  int64 createBegin = 4;
-  int64 createEnd = 5;
-}
-
-message PayinExcuteInfo {
-  int64 orderId = 1;
-  string outTradeNo = 2;
-  uint32 status = 3;
-  string targetOrg = 4;
-  uint32 payAmount = 5;
-  string paymentMethod = 6;
-  string payCurrency = 7;
-  string paymentMethodType = 8;
-  string country = 9;
-  string subject = 10;
-  int64 createTime = 11;
-}
-
-message PayinQueryToExecuteResponse {
-  message Items { repeated PayinExcuteInfo payinExcuteInfo = 1; }
-  BaseResponse baseResponse = 1;
-  Items items = 2;
 }
 
 message PayinQueryPageRequest {
