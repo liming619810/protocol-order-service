@@ -21,7 +21,7 @@ message PayinExcuteInfo {
   string outTradeNo = 2;
   uint32 status = 3;
   string targetOrg = 4;
-  uint32 payAmount = 5;
+  string payAmount = 5;
   string paymentMethod = 6;
   string payCurrency = 7;
   string paymentMethodType = 8;
@@ -31,9 +31,9 @@ message PayinExcuteInfo {
 }
 
 message PayinQueryToExecuteResponse {
-  message Items { repeated PayinExcuteInfo payinExcuteInfo = 1; }
   BaseResponse baseResponse = 1;
-  Items items = 2;
+  // repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
+  repeated PayinExcuteInfo Items = 2;
 }
 
 message PayinQueryPageRequest {
