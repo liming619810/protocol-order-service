@@ -11,9 +11,8 @@ service payin {
 }
 
 message PayinQueryToExecuteRequest {
-  int32 count = 1;
-  int64 merchantNo = 2;
-  int64 createBegin = 3;
+  int64 merchantNo = 1;
+  int64 createBegin = 2;
 }
 
 message PayinExcuteInfo {
@@ -32,7 +31,6 @@ message PayinExcuteInfo {
 
 message PayinQueryToExecuteResponse {
   BaseResponse baseResponse = 1;
-  // repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
   repeated PayinExcuteInfo Items = 2;
 }
 
