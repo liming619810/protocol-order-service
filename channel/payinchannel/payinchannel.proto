@@ -15,6 +15,7 @@ message PayinQueryToExecuteRequest {
 }
 
 message PayinExcuteInfo {
+  int64 merchantNo = 12;
   int64 orderId = 1;
   string outTradeNo = 2;
   uint32 status = 3;
