@@ -167,7 +167,7 @@ message PayinOrder {
   message Paymentdetails {
     string targetOrg = 1;
     Cardinfo cardInfo = 2;
-    uint32 payAmount = 3;
+    string payAmount = 3;
     string exchangeRate = 4;
     string paymentMethod = 5;
     string payCurrency = 6;
@@ -184,7 +184,7 @@ message PayinOrder {
 
   string reference = 1;
   string country = 2;
-  uint32 totalAmount = 3;
+  string totalAmount = 3;
   string outTradeNo = 4;
   string currency = 5;
   string channelNo = 6;
