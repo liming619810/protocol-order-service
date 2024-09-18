@@ -37,6 +37,7 @@ func NewPayinEndpoints() []*api.Endpoint {
 
 type PayinService interface {
 	QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, opts ...client.CallOption) (*PayinQueryToExecuteResponse, error)
+	UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, opts ...client.CallOption) (*BaseResponse, error)
 }
 
 type payinService struct {
@@ -61,15 +62,27 @@ func (c *payinService) QueryToExecute(ctx context.Context, in *PayinQueryToExecu
 	return out, nil
 }
 
+func (c *payinService) UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, opts ...client.CallOption) (*BaseResponse, error) {
+	req := c.c.NewRequest(c.name, "Payin.UpdatePayinStatus", in)
+	out := new(BaseResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Payin service
 
 type PayinHandler interface {
 	QueryToExecute(context.Context, *PayinQueryToExecuteRequest, *PayinQueryToExecuteResponse) error
+	UpdatePayinStatus(context.Context, *UpdateStatusRequest, *BaseResponse) error
 }
 
 func RegisterPayinHandler(s server.Server, hdlr PayinHandler, opts ...server.HandlerOption) error {
 	type payin interface {
 		QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, out *PayinQueryToExecuteResponse) error
+		UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, out *BaseResponse) error
 	}
 	type Payin struct {
 		payin
@@ -84,4 +97,8 @@ type payinHandler struct {
 
 func (h *payinHandler) QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, out *PayinQueryToExecuteResponse) error {
 	return h.PayinHandler.QueryToExecute(ctx, in, out)
+}
+
+func (h *payinHandler) UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, out *BaseResponse) error {
+	return h.PayinHandler.UpdatePayinStatus(ctx, in, out)
 }
