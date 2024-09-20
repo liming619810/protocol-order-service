@@ -31,8 +31,9 @@ message PayinExcuteInfo {
 }
 
 message PayinQueryToExecuteResponse {
-  BaseResponse baseResponse = 1;
-  repeated PayinExcuteInfo Items = 2;
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  repeated PayinExcuteInfo Items = 3;
 }
 
 message PayinQueryPageRequest {
