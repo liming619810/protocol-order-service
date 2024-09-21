@@ -27,33 +27,33 @@ var _ context.Context
 var _ client.Option
 var _ server.Option
 
-// Api Endpoints for Payin service
+// Api Endpoints for PayinChannel service
 
-func NewPayinEndpoints() []*api.Endpoint {
+func NewPayinChannelEndpoints() []*api.Endpoint {
 	return []*api.Endpoint{}
 }
 
-// Client API for Payin service
+// Client API for PayinChannel service
 
-type PayinService interface {
+type PayinChannelService interface {
 	QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, opts ...client.CallOption) (*PayinQueryToExecuteResponse, error)
 	UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, opts ...client.CallOption) (*BaseResponse, error)
 }
 
-type payinService struct {
+type payinChannelService struct {
 	c    client.Client
 	name string
 }
 
-func NewPayinService(name string, c client.Client) PayinService {
-	return &payinService{
+func NewPayinChannelService(name string, c client.Client) PayinChannelService {
+	return &payinChannelService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *payinService) QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, opts ...client.CallOption) (*PayinQueryToExecuteResponse, error) {
-	req := c.c.NewRequest(c.name, "Payin.QueryToExecute", in)
+func (c *payinChannelService) QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, opts ...client.CallOption) (*PayinQueryToExecuteResponse, error) {
+	req := c.c.NewRequest(c.name, "PayinChannel.QueryToExecute", in)
 	out := new(PayinQueryToExecuteResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -62,8 +62,8 @@ func (c *payinService) QueryToExecute(ctx context.Context, in *PayinQueryToExecu
 	return out, nil
 }
 
-func (c *payinService) UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, opts ...client.CallOption) (*BaseResponse, error) {
-	req := c.c.NewRequest(c.name, "Payin.UpdatePayinStatus", in)
+func (c *payinChannelService) UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, opts ...client.CallOption) (*BaseResponse, error) {
+	req := c.c.NewRequest(c.name, "PayinChannel.UpdatePayinStatus", in)
 	out := new(BaseResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -72,33 +72,33 @@ func (c *payinService) UpdatePayinStatus(ctx context.Context, in *UpdateStatusRe
 	return out, nil
 }
 
-// Server API for Payin service
+// Server API for PayinChannel service
 
-type PayinHandler interface {
+type PayinChannelHandler interface {
 	QueryToExecute(context.Context, *PayinQueryToExecuteRequest, *PayinQueryToExecuteResponse) error
 	UpdatePayinStatus(context.Context, *UpdateStatusRequest, *BaseResponse) error
 }
 
-func RegisterPayinHandler(s server.Server, hdlr PayinHandler, opts ...server.HandlerOption) error {
-	type payin interface {
+func RegisterPayinChannelHandler(s server.Server, hdlr PayinChannelHandler, opts ...server.HandlerOption) error {
+	type payinChannel interface {
 		QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, out *PayinQueryToExecuteResponse) error
 		UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, out *BaseResponse) error
 	}
-	type Payin struct {
-		payin
+	type PayinChannel struct {
+		payinChannel
 	}
-	h := &payinHandler{hdlr}
-	return s.Handle(s.NewHandler(&Payin{h}, opts...))
+	h := &payinChannelHandler{hdlr}
+	return s.Handle(s.NewHandler(&PayinChannel{h}, opts...))
 }
 
-type payinHandler struct {
-	PayinHandler
+type payinChannelHandler struct {
+	PayinChannelHandler
 }
 
-func (h *payinHandler) QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, out *PayinQueryToExecuteResponse) error {
-	return h.PayinHandler.QueryToExecute(ctx, in, out)
+func (h *payinChannelHandler) QueryToExecute(ctx context.Context, in *PayinQueryToExecuteRequest, out *PayinQueryToExecuteResponse) error {
+	return h.PayinChannelHandler.QueryToExecute(ctx, in, out)
 }
 
-func (h *payinHandler) UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, out *BaseResponse) error {
-	return h.PayinHandler.UpdatePayinStatus(ctx, in, out)
+func (h *payinChannelHandler) UpdatePayinStatus(ctx context.Context, in *UpdateStatusRequest, out *BaseResponse) error {
+	return h.PayinChannelHandler.UpdatePayinStatus(ctx, in, out)
 }

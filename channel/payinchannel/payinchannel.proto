@@ -4,7 +4,7 @@ package order.payinchannel;
 
 option go_package = "../payinchannel";
 
-service payin {
+service payinChannel {
   rpc QueryToExecute(PayinQueryToExecuteRequest)
       returns (PayinQueryToExecuteResponse) {}
   rpc UpdatePayinStatus(UpdateStatusRequest) returns (BaseResponse) {}
