@@ -1,0 +1,201 @@
+syntax = "proto3";
+
+package order.Payout;
+
+option go_package = "../Payout";
+
+service payoutOrder {
+  // 新增 收单
+  rpc PaymentOrderAndPay(PayoutRequest) returns (PayoutResponse) {}
+  rpc PaymentOrderQuery(PayoutQueryRequest) returns (PayoutQueryResponse) {}
+  rpc PaymentOrderQueryPage(PayoutQueryPageRequest)
+      returns (PayoutQueryPageResponse) {}
+}
+
+message PayoutQueryPageRequest {
+  int32 page = 1;
+  int32 pageSize = 2;
+  repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
+  string merchantNo = 4;
+  string outTradeNo = 5;
+  int64 userId = 6;  // 商户下的用户id
+  int64 orderId = 7; // 订单ID
+  int64 createBegin = 8;
+  int64 createEnd = 9;
+  int64 updateBegin = 10;
+  int64 updateEnd = 11;
+}
+
+message Pagination {
+  int32 pageSize = 1;
+  int32 page = 2;
+  int32 currentPage = 3;
+  int32 total = 4;
+}
+
+message PayoutQueryPageResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  repeated PayoutOrder items = 3;
+  Pagination pagination = 4;
+}
+
+message PayoutRequest {
+  message Riskparams {
+    string registerName = 1;
+    string regTime = 2;
+    string liveCountry = 3;
+    string bindPhoneNo = 4;
+    string bindEmail = 5;
+    string taxId = 6;
+  }
+
+  message Trade {
+    string amount = 1;
+    string currency = 2;
+  }
+
+  message Accountinfo {
+    string accountNo = 1;
+    string accountType = 2;
+    string checkDigit = 3;
+  }
+
+  message Bankinfo {
+    string bankCode = 1;
+    string bankName = 2;
+    string bankBranch = 3;
+    string bankCity = 4;
+    string corAccountNo = 5;
+  }
+
+  message Name {
+    string firstName = 1;
+    string middleName = 2;
+    string lastName = 3;
+    string fullName = 4;
+  }
+
+  message Document {
+    string documentType = 1;
+    string documentId = 2;
+    string documentIssueDate = 3;
+    string documentExpireDate = 4;
+  }
+
+  message Address {
+    string address = 1;
+    string city = 2;
+    string state = 3;
+    string zipCode = 4;
+  }
+
+  message Payeeinfo {
+    string paymentMethodType = 1;
+    string targetOrg = 2;
+    string payeeType = 3;
+    Accountinfo accountInfo = 4;
+    Bankinfo bankInfo = 5;
+    Name name = 6;
+    Document document = 7;
+    Address address = 8;
+    string payeePhone = 9;
+    string birthDate = 10;
+    string email = 11;
+  }
+
+  message Payerinfo {
+    string subMerchantNo = 1;
+    Name name = 2;
+  }
+
+  string outTradeNo = 1;
+  string country = 2;
+  string sourceAccount = 3;
+  string destinationCurrency = 4;
+  string userId = 5;
+  Riskparams riskParams = 6;
+  Trade trade = 7;
+  Payeeinfo payeeInfo = 8;
+  Payerinfo payerInfo = 9;
+  string expiryDays = 10;
+  string remark = 11;
+  string reference = 12;
+  string notifyUrl = 13;
+  string notifyEmail = 14;
+  string notifyPhone = 15;
+  string purpose = 16;
+}
+
+message BaseResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+}
+
+message PayoutResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  string outTradeNo = 3;
+  string tradeToken = 4;
+  int32 status = 5;
+}
+
+message PayoutQueryRequest {
+  int64 merchantNo = 1;
+  string outTradeNo = 2;
+}
+
+message PayoutQueryResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  PayoutOrder Payout = 3;
+}
+
+message PayoutOrder {
+  message Trade {
+    string amount = 1;
+    string currency = 2;
+  }
+
+  message Destination {
+    string amount = 1;
+    string taxCurrency = 2;
+    string exchangeRate = 3;
+    string fee = 4;
+    string feeCurrency = 5;
+    string currency = 6;
+    string tax = 7;
+  }
+
+  message Source {
+    string amount = 1;
+    string taxCurrency = 2;
+    string exchangeRate = 3;
+    string fee = 4;
+    string feeCurrency = 5;
+    string currency = 6;
+    string tax = 7;
+  }
+
+  message Additionalidentifier { string referenceId = 1; }
+
+  string outTradeNo = 1;
+  string tradeNo = 2;
+  string status = 3;
+  string fundsFreezeTime = 4;
+  string fundsReturnTime = 5;
+  string notifyEmail = 6;
+  string notifyPhone = 7;
+  string responseCode = 8;
+  string responseMsg = 9;
+  string reference = 10;
+  string redeemCode = 11;
+  string expiryTime = 12;
+  string bounceBackTime = 13;
+  string transactionUtcTime = 14;
+  string payFinishTime = 15;
+  Trade trade = 16;
+  Destination destination = 17;
+  Source source = 18;
+  Additionalidentifier additionalIdentifier = 19;
+}
