@@ -108,7 +108,7 @@ message PayoutRequest {
     string subMerchantNo = 1;
     Name name = 2;
   }
-
+  string merchantNo = 17;
   string outTradeNo = 1;
   string country = 2;
   string sourceAccount = 3;

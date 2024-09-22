@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package order.payoutchannel;
+
+option go_package = "../payoutchannel";
+
+service payoutChannel {
+  rpc QueryToExecute(PayoutQueryToExecuteRequest)
+      returns (PayoutQueryToExecuteResponse) {}
+  rpc UpdatePayoutStatus(UpdateStatusRequest) returns (BaseResponse) {}
+}
+
+message PayoutQueryToExecuteRequest {
+  int64 merchantNo = 1;
+  int64 createBegin = 2;
+}
+
+message PayinExcuteInfo {
+  int64 merchantNo = 12;
+  int64 orderId = 1;
+  string outTradeNo = 2;
+  uint32 status = 3;
+  string targetOrg = 4;
+  string payAmount = 5;
+  string paymentMethod = 6;
+  string payCurrency = 7;
+  string paymentMethodType = 8;
+  string country = 9;
+  string subject = 10;
+  int64 createTime = 11;
+}
+
+message PayoutQueryToExecuteResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  repeated PayinExcuteInfo items = 3;
+}
+
+message PayinQueryPageRequest {
+  int32 page = 1;
+  int32 pageSize = 2;
+  repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
+  string merchantNo = 4;
+  string outTradeNo = 5;
+  int64 userId = 6;  // 商户下的用户id
+  int64 orderId = 7; // 订单ID
+  int64 createBegin = 8;
+  int64 createEnd = 9;
+  int64 updateBegin = 10;
+  int64 updateEnd = 11;
+}
+
+message BaseResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+}
+
+message UpdateStatusRequest {
+  int64 orderID = 1;
+  int32 status = 2;
+}
