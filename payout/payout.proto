@@ -157,7 +157,7 @@ message PayoutOrder {
     string currency = 2;
   }
 
-  message Destination {
+  message Payee {
     string amount = 1;
     string taxCurrency = 2;
     string exchangeRate = 3;
@@ -167,7 +167,7 @@ message PayoutOrder {
     string tax = 7;
   }
 
-  message Source {
+  message Payer {
     string amount = 1;
     string taxCurrency = 2;
     string exchangeRate = 3;
@@ -195,7 +195,7 @@ message PayoutOrder {
   int64 transactionUtcTime = 14;
   int64 payFinishTime = 15;
   Trade trade = 16;
-  Destination destination = 17;
-  Source source = 18;
+  Payer payer = 17;
+  Payee payee = 18;
   Additionalidentifier additionalIdentifier = 19;
 }
