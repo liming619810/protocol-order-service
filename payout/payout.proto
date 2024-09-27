@@ -181,9 +181,9 @@ message PayoutOrder {
 
   string outTradeNo = 1;
   string tradeNo = 2;
-  string status = 3;
-  string fundsFreezeTime = 4;
-  string fundsReturnTime = 5;
+  int32 status = 3;
+  int64 fundsFreezeTime = 4;
+  int64 fundsReturnTime = 5;
   string notifyEmail = 6;
   string notifyPhone = 7;
   string responseCode = 8;
@@ -191,9 +191,9 @@ message PayoutOrder {
   string reference = 10;
   string redeemCode = 11;
   string expiryTime = 12;
-  string bounceBackTime = 13;
-  string transactionUtcTime = 14;
-  string payFinishTime = 15;
+  int64 bounceBackTime = 13;
+  int64 transactionUtcTime = 14;
+  int64 payFinishTime = 15;
   Trade trade = 16;
   Destination destination = 17;
   Source source = 18;
