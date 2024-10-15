@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package order.settlement;
+
+option go_package = "../settlement";
+
+service settlement {
+  rpc Query(QueryRequest) returns (QueryResponse) {}
+  rpc QueryPage(QueryPageRequest) returns (QueryPageResponse) {}
+}
+
+message QueryPageRequest {
+  int32 page = 1;
+  int32 pageSize = 2;
+  repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
+  string merchantNo = 4;
+  string outTradeNo = 5;
+  int64 userId = 6;  // 商户下的用户id
+  int64 orderId = 7; // 订单ID
+  int64 createBegin = 8;
+  int64 createEnd = 9;
+  int64 updateBegin = 10;
+  int64 updateEnd = 11;
+}
+
+message Pagination {
+  int32 pageSize = 1;
+  int32 page = 2;
+  int32 currentPage = 3;
+  int32 total = 4;
+}
+
+message QueryPageResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  repeated SettlementOrder Items = 3;
+  Pagination pagination = 4;
+}
+
+message BaseResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+}
+
+message QueryRequest { int64 selltementID = 1; }
+
+message QueryResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  SettlementOrder Settlement = 3;
+}
+
+message SettlementOrder {
+  int64 SettlementId = 1; // 订单ID(雪花算法)
+  int64 MerchantId = 2; // 商户号，商户与PayerMax业务签约时生成的唯一标识
+  // 订单状态(0:无状态,1:待结算,2:结算中,3:结算完成,4:结算失败)
+  int32 SettlementStatus = 3;
+  string SettlementAmount = 4;          // 应结金额
+  string RemainingSettlementAmount = 5; // 剩余可结算金额
+  string Currency = 6;      // 记账币种,币种英文缩写(3个字母)
+  int64 SettlementTime = 7; // 订单结算时间 精确到毫秒
+  // 换汇方式(0:'无状态',1:'结算日换汇',2:'订单日换汇')
+  int32 PaymentExchangeType = 8;
+  string ExchangeRate = 9; // 结算汇率
+  string Country = 10;     // 交易国家,国家名称英文缩写(2个字母)
+  string AccountSubject = 11; // 账户主体
+  int64 CreateTime = 12;      // 订单创建时间 精确到毫秒
+  int64 UpdateTime = 13;      // 订单更新时间 精确到毫秒
+  int64 CompleteTime = 14;    // 订单完成时间 精确到毫秒
+}
