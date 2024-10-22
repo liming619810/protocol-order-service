@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package order.payin;
+
+option go_package = "../merchant";
+
+service merchant {
+  // 新增 收单
+  rpc MerchantBalance(MerchantBalanceRequest)
+      returns (MerchantBalanceResponse) {}
+}
+
+message MerchantBalanceRequest { int32 MerchantID = 1; }
+
+message BalanceItem {
+  int32 accountType = 2;
+  string currency = 3;
+  string balance = 4;
+}
+
+message MerchantBalanceResponse {
+  int32 code = 1;
+  string msg = 2;
+  repeated BalanceItem Items = 3;
+}
