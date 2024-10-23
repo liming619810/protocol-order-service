@@ -10,7 +10,7 @@ service merchant {
       returns (MerchantBalanceResponse) {}
 }
 
-message MerchantBalanceRequest { int32 MerchantID = 1; }
+message MerchantBalanceRequest { int64 MerchantID = 1; }
 
 message BalanceItem {
   int32 accountType = 2;
