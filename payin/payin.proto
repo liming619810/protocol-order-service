@@ -17,12 +17,14 @@ message PayinQueryPageRequest {
   repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
   string merchantNo = 4;
   string outTradeNo = 5;
-  int64 userId = 6;  // 商户下的用户id
-  int64 orderId = 7; // 订单ID
-  int64 createBegin = 8;
-  int64 createEnd = 9;
-  int64 updateBegin = 10;
-  int64 updateEnd = 11;
+  string country = 6;
+  string currency = 7;
+  int64 userId = 8;  // 商户下的用户id
+  int64 orderId = 9; // 订单ID
+  int64 createBegin = 10;
+  int64 createEnd = 11;
+  int64 updateBegin = 12;
+  int64 updateEnd = 13;
 }
 
 message Pagination {
