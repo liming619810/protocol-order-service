@@ -8,6 +8,7 @@ service payin {
   // 新增 收单
   rpc OrderAndPay(PayinRequest) returns (PayinResponse) {}
   rpc OrderQuery(PayinQueryRequest) returns (PayinQueryResponse) {}
+  rpc PayinDetail(PayinDetailRequest) returns (PayinDetailResponse) {}
   rpc OrderQueryPage(PayinQueryPageRequest) returns (PayinQueryPageResponse) {}
 }
 
@@ -200,4 +201,11 @@ message PayinOrder {
   Fees fees = 12;
   string status = 13;
   string resultMsg = 14;
+}
+
+message PayinDetailRequest { int64 orderId = 1; }
+message PayinDetailResponse {
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  PayinOrder payin = 3;
 }

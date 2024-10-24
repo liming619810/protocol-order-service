@@ -907,6 +907,116 @@ func (x *PayinOrder) GetResultMsg() string {
 	return ""
 }
 
+type PayinDetailRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	OrderId int64 `protobuf:"varint,1,opt,name=orderId,proto3" json:"orderId,omitempty"`
+}
+
+func (x *PayinDetailRequest) Reset() {
+	*x = PayinDetailRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_payin_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayinDetailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayinDetailRequest) ProtoMessage() {}
+
+func (x *PayinDetailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_payin_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayinDetailRequest.ProtoReflect.Descriptor instead.
+func (*PayinDetailRequest) Descriptor() ([]byte, []int) {
+	return file_payin_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *PayinDetailRequest) GetOrderId() int64 {
+	if x != nil {
+		return x.OrderId
+	}
+	return 0
+}
+
+type PayinDetailResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code  int32       `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"` // 返回码
+	Msg   string      `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`    // 错误信息
+	Payin *PayinOrder `protobuf:"bytes,3,opt,name=payin,proto3" json:"payin,omitempty"`
+}
+
+func (x *PayinDetailResponse) Reset() {
+	*x = PayinDetailResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_payin_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayinDetailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayinDetailResponse) ProtoMessage() {}
+
+func (x *PayinDetailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_payin_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayinDetailResponse.ProtoReflect.Descriptor instead.
+func (*PayinDetailResponse) Descriptor() ([]byte, []int) {
+	return file_payin_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PayinDetailResponse) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *PayinDetailResponse) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *PayinDetailResponse) GetPayin() *PayinOrder {
+	if x != nil {
+		return x.Payin
+	}
+	return nil
+}
+
 type PayinRequest_Cardinfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -922,7 +1032,7 @@ type PayinRequest_Cardinfo struct {
 func (x *PayinRequest_Cardinfo) Reset() {
 	*x = PayinRequest_Cardinfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[9]
+		mi := &file_payin_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -935,7 +1045,7 @@ func (x *PayinRequest_Cardinfo) String() string {
 func (*PayinRequest_Cardinfo) ProtoMessage() {}
 
 func (x *PayinRequest_Cardinfo) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[9]
+	mi := &file_payin_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1002,7 +1112,7 @@ type PayinRequest_Buyerinfo struct {
 func (x *PayinRequest_Buyerinfo) Reset() {
 	*x = PayinRequest_Buyerinfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[10]
+		mi := &file_payin_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1015,7 +1125,7 @@ func (x *PayinRequest_Buyerinfo) String() string {
 func (*PayinRequest_Buyerinfo) ProtoMessage() {}
 
 func (x *PayinRequest_Buyerinfo) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[10]
+	mi := &file_payin_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1087,7 +1197,7 @@ type PayinRequest_Paymentdetail struct {
 func (x *PayinRequest_Paymentdetail) Reset() {
 	*x = PayinRequest_Paymentdetail{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[11]
+		mi := &file_payin_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1100,7 +1210,7 @@ func (x *PayinRequest_Paymentdetail) String() string {
 func (*PayinRequest_Paymentdetail) ProtoMessage() {}
 
 func (x *PayinRequest_Paymentdetail) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[11]
+	mi := &file_payin_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1161,7 +1271,7 @@ type PayinRequest_Goodsdetails struct {
 func (x *PayinRequest_Goodsdetails) Reset() {
 	*x = PayinRequest_Goodsdetails{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[12]
+		mi := &file_payin_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1174,7 +1284,7 @@ func (x *PayinRequest_Goodsdetails) String() string {
 func (*PayinRequest_Goodsdetails) ProtoMessage() {}
 
 func (x *PayinRequest_Goodsdetails) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[12]
+	mi := &file_payin_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1257,7 +1367,7 @@ type PayinRequest_Shippinginfo struct {
 func (x *PayinRequest_Shippinginfo) Reset() {
 	*x = PayinRequest_Shippinginfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[13]
+		mi := &file_payin_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1270,7 +1380,7 @@ func (x *PayinRequest_Shippinginfo) String() string {
 func (*PayinRequest_Shippinginfo) ProtoMessage() {}
 
 func (x *PayinRequest_Shippinginfo) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[13]
+	mi := &file_payin_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1360,7 +1470,7 @@ type PayinRequest_Billinginfo struct {
 func (x *PayinRequest_Billinginfo) Reset() {
 	*x = PayinRequest_Billinginfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[14]
+		mi := &file_payin_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1373,7 +1483,7 @@ func (x *PayinRequest_Billinginfo) String() string {
 func (*PayinRequest_Billinginfo) ProtoMessage() {}
 
 func (x *PayinRequest_Billinginfo) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[14]
+	mi := &file_payin_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1461,7 +1571,7 @@ type PayinRequest_Riskparams struct {
 func (x *PayinRequest_Riskparams) Reset() {
 	*x = PayinRequest_Riskparams{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[15]
+		mi := &file_payin_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1474,7 +1584,7 @@ func (x *PayinRequest_Riskparams) String() string {
 func (*PayinRequest_Riskparams) ProtoMessage() {}
 
 func (x *PayinRequest_Riskparams) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[15]
+	mi := &file_payin_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1544,7 +1654,7 @@ type PayinRequest_Separateaccountinfo struct {
 func (x *PayinRequest_Separateaccountinfo) Reset() {
 	*x = PayinRequest_Separateaccountinfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[16]
+		mi := &file_payin_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1557,7 +1667,7 @@ func (x *PayinRequest_Separateaccountinfo) String() string {
 func (*PayinRequest_Separateaccountinfo) ProtoMessage() {}
 
 func (x *PayinRequest_Separateaccountinfo) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[16]
+	mi := &file_payin_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1601,7 +1711,7 @@ type PayinOrder_Cardinfo struct {
 func (x *PayinOrder_Cardinfo) Reset() {
 	*x = PayinOrder_Cardinfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[17]
+		mi := &file_payin_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1614,7 +1724,7 @@ func (x *PayinOrder_Cardinfo) String() string {
 func (*PayinOrder_Cardinfo) ProtoMessage() {}
 
 func (x *PayinOrder_Cardinfo) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[17]
+	mi := &file_payin_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1675,7 +1785,7 @@ type PayinOrder_Paymentdetails struct {
 func (x *PayinOrder_Paymentdetails) Reset() {
 	*x = PayinOrder_Paymentdetails{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[18]
+		mi := &file_payin_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1688,7 +1798,7 @@ func (x *PayinOrder_Paymentdetails) String() string {
 func (*PayinOrder_Paymentdetails) ProtoMessage() {}
 
 func (x *PayinOrder_Paymentdetails) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[18]
+	mi := &file_payin_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1766,7 +1876,7 @@ type PayinOrder_Merfee struct {
 func (x *PayinOrder_Merfee) Reset() {
 	*x = PayinOrder_Merfee{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[19]
+		mi := &file_payin_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1779,7 +1889,7 @@ func (x *PayinOrder_Merfee) String() string {
 func (*PayinOrder_Merfee) ProtoMessage() {}
 
 func (x *PayinOrder_Merfee) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[19]
+	mi := &file_payin_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1827,7 +1937,7 @@ type PayinOrder_Fees struct {
 func (x *PayinOrder_Fees) Reset() {
 	*x = PayinOrder_Fees{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_payin_proto_msgTypes[20]
+		mi := &file_payin_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1840,7 +1950,7 @@ func (x *PayinOrder_Fees) String() string {
 func (*PayinOrder_Fees) ProtoMessage() {}
 
 func (x *PayinOrder_Fees) ProtoReflect() protoreflect.Message {
-	mi := &file_payin_proto_msgTypes[20]
+	mi := &file_payin_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2163,16 +2273,31 @@ var file_payin_proto_rawDesc = []byte{
 	0x65, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72,
 	0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x69, 0x6e, 0x4f, 0x72, 0x64, 0x65,
 	0x72, 0x2e, 0x4d, 0x65, 0x72, 0x66, 0x65, 0x65, 0x52, 0x06, 0x6d, 0x65, 0x72, 0x46, 0x65, 0x65,
-	0x32, 0xfd, 0x01, 0x0a, 0x05, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x12, 0x46, 0x0a, 0x0b, 0x4f, 0x72,
-	0x64, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x50, 0x61, 0x79, 0x12, 0x19, 0x2e, 0x6f, 0x72, 0x64, 0x65,
-	0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x69, 0x6e, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79,
-	0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x00, 0x12, 0x4f, 0x0a, 0x0a, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x12, 0x1e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50,
-	0x61, 0x79, 0x69, 0x6e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x1f, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50,
-	0x61, 0x79, 0x69, 0x6e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x22, 0x2e, 0x0a, 0x12, 0x50, 0x61, 0x79, 0x69, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x49,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x64,
+	0x22, 0x6a, 0x0a, 0x13, 0x50, 0x61, 0x79, 0x69, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d,
+	0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x2d, 0x0a,
+	0x05, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x69, 0x6e,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x05, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x32, 0xd1, 0x02, 0x0a,
+	0x05, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x12, 0x46, 0x0a, 0x0b, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x41,
+	0x6e, 0x64, 0x50, 0x61, 0x79, 0x12, 0x19, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61,
+	0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x1a, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50,
+	0x61, 0x79, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4f,
+	0x0a, 0x0a, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x1e, 0x2e, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x69, 0x6e,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x69, 0x6e,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
+	0x52, 0x0a, 0x0b, 0x50, 0x61, 0x79, 0x69, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x12, 0x1f,
+	0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79,
+	0x69, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x20, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61, 0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61,
+	0x79, 0x69, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x22, 0x00, 0x12, 0x5b, 0x0a, 0x0e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x51, 0x75, 0x65, 0x72,
 	0x79, 0x50, 0x61, 0x67, 0x65, 0x12, 0x22, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x61,
 	0x79, 0x69, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x69, 0x6e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61,
@@ -2195,7 +2320,7 @@ func file_payin_proto_rawDescGZIP() []byte {
 	return file_payin_proto_rawDescData
 }
 
-var file_payin_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_payin_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_payin_proto_goTypes = []interface{}{
 	(*PayinQueryPageRequest)(nil),            // 0: order.payin.PayinQueryPageRequest
 	(*Pagination)(nil),                       // 1: order.payin.Pagination
@@ -2206,46 +2331,51 @@ var file_payin_proto_goTypes = []interface{}{
 	(*PayinQueryRequest)(nil),                // 6: order.payin.PayinQueryRequest
 	(*PayinQueryResponse)(nil),               // 7: order.payin.PayinQueryResponse
 	(*PayinOrder)(nil),                       // 8: order.payin.PayinOrder
-	(*PayinRequest_Cardinfo)(nil),            // 9: order.payin.PayinRequest.Cardinfo
-	(*PayinRequest_Buyerinfo)(nil),           // 10: order.payin.PayinRequest.Buyerinfo
-	(*PayinRequest_Paymentdetail)(nil),       // 11: order.payin.PayinRequest.Paymentdetail
-	(*PayinRequest_Goodsdetails)(nil),        // 12: order.payin.PayinRequest.Goodsdetails
-	(*PayinRequest_Shippinginfo)(nil),        // 13: order.payin.PayinRequest.Shippinginfo
-	(*PayinRequest_Billinginfo)(nil),         // 14: order.payin.PayinRequest.Billinginfo
-	(*PayinRequest_Riskparams)(nil),          // 15: order.payin.PayinRequest.Riskparams
-	(*PayinRequest_Separateaccountinfo)(nil), // 16: order.payin.PayinRequest.Separateaccountinfo
-	(*PayinOrder_Cardinfo)(nil),              // 17: order.payin.PayinOrder.Cardinfo
-	(*PayinOrder_Paymentdetails)(nil),        // 18: order.payin.PayinOrder.Paymentdetails
-	(*PayinOrder_Merfee)(nil),                // 19: order.payin.PayinOrder.Merfee
-	(*PayinOrder_Fees)(nil),                  // 20: order.payin.PayinOrder.Fees
+	(*PayinDetailRequest)(nil),               // 9: order.payin.PayinDetailRequest
+	(*PayinDetailResponse)(nil),              // 10: order.payin.PayinDetailResponse
+	(*PayinRequest_Cardinfo)(nil),            // 11: order.payin.PayinRequest.Cardinfo
+	(*PayinRequest_Buyerinfo)(nil),           // 12: order.payin.PayinRequest.Buyerinfo
+	(*PayinRequest_Paymentdetail)(nil),       // 13: order.payin.PayinRequest.Paymentdetail
+	(*PayinRequest_Goodsdetails)(nil),        // 14: order.payin.PayinRequest.Goodsdetails
+	(*PayinRequest_Shippinginfo)(nil),        // 15: order.payin.PayinRequest.Shippinginfo
+	(*PayinRequest_Billinginfo)(nil),         // 16: order.payin.PayinRequest.Billinginfo
+	(*PayinRequest_Riskparams)(nil),          // 17: order.payin.PayinRequest.Riskparams
+	(*PayinRequest_Separateaccountinfo)(nil), // 18: order.payin.PayinRequest.Separateaccountinfo
+	(*PayinOrder_Cardinfo)(nil),              // 19: order.payin.PayinOrder.Cardinfo
+	(*PayinOrder_Paymentdetails)(nil),        // 20: order.payin.PayinOrder.Paymentdetails
+	(*PayinOrder_Merfee)(nil),                // 21: order.payin.PayinOrder.Merfee
+	(*PayinOrder_Fees)(nil),                  // 22: order.payin.PayinOrder.Fees
 }
 var file_payin_proto_depIdxs = []int32{
 	8,  // 0: order.payin.PayinQueryPageResponse.items:type_name -> order.payin.PayinOrder
 	1,  // 1: order.payin.PayinQueryPageResponse.pagination:type_name -> order.payin.Pagination
-	11, // 2: order.payin.PayinRequest.paymentDetail:type_name -> order.payin.PayinRequest.Paymentdetail
-	12, // 3: order.payin.PayinRequest.goodsDetails:type_name -> order.payin.PayinRequest.Goodsdetails
-	13, // 4: order.payin.PayinRequest.shippingInfo:type_name -> order.payin.PayinRequest.Shippinginfo
-	14, // 5: order.payin.PayinRequest.billingInfo:type_name -> order.payin.PayinRequest.Billinginfo
-	15, // 6: order.payin.PayinRequest.riskParams:type_name -> order.payin.PayinRequest.Riskparams
-	16, // 7: order.payin.PayinRequest.separateAccountInfo:type_name -> order.payin.PayinRequest.Separateaccountinfo
+	13, // 2: order.payin.PayinRequest.paymentDetail:type_name -> order.payin.PayinRequest.Paymentdetail
+	14, // 3: order.payin.PayinRequest.goodsDetails:type_name -> order.payin.PayinRequest.Goodsdetails
+	15, // 4: order.payin.PayinRequest.shippingInfo:type_name -> order.payin.PayinRequest.Shippinginfo
+	16, // 5: order.payin.PayinRequest.billingInfo:type_name -> order.payin.PayinRequest.Billinginfo
+	17, // 6: order.payin.PayinRequest.riskParams:type_name -> order.payin.PayinRequest.Riskparams
+	18, // 7: order.payin.PayinRequest.separateAccountInfo:type_name -> order.payin.PayinRequest.Separateaccountinfo
 	8,  // 8: order.payin.PayinQueryResponse.payin:type_name -> order.payin.PayinOrder
-	18, // 9: order.payin.PayinOrder.paymentDetails:type_name -> order.payin.PayinOrder.Paymentdetails
-	20, // 10: order.payin.PayinOrder.fees:type_name -> order.payin.PayinOrder.Fees
-	9,  // 11: order.payin.PayinRequest.Paymentdetail.cardInfo:type_name -> order.payin.PayinRequest.Cardinfo
-	10, // 12: order.payin.PayinRequest.Paymentdetail.buyerInfo:type_name -> order.payin.PayinRequest.Buyerinfo
-	17, // 13: order.payin.PayinOrder.Paymentdetails.cardInfo:type_name -> order.payin.PayinOrder.Cardinfo
-	19, // 14: order.payin.PayinOrder.Fees.merFee:type_name -> order.payin.PayinOrder.Merfee
-	3,  // 15: order.payin.payin.OrderAndPay:input_type -> order.payin.PayinRequest
-	6,  // 16: order.payin.payin.OrderQuery:input_type -> order.payin.PayinQueryRequest
-	0,  // 17: order.payin.payin.OrderQueryPage:input_type -> order.payin.PayinQueryPageRequest
-	5,  // 18: order.payin.payin.OrderAndPay:output_type -> order.payin.PayinResponse
-	7,  // 19: order.payin.payin.OrderQuery:output_type -> order.payin.PayinQueryResponse
-	2,  // 20: order.payin.payin.OrderQueryPage:output_type -> order.payin.PayinQueryPageResponse
-	18, // [18:21] is the sub-list for method output_type
-	15, // [15:18] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	20, // 9: order.payin.PayinOrder.paymentDetails:type_name -> order.payin.PayinOrder.Paymentdetails
+	22, // 10: order.payin.PayinOrder.fees:type_name -> order.payin.PayinOrder.Fees
+	8,  // 11: order.payin.PayinDetailResponse.payin:type_name -> order.payin.PayinOrder
+	11, // 12: order.payin.PayinRequest.Paymentdetail.cardInfo:type_name -> order.payin.PayinRequest.Cardinfo
+	12, // 13: order.payin.PayinRequest.Paymentdetail.buyerInfo:type_name -> order.payin.PayinRequest.Buyerinfo
+	19, // 14: order.payin.PayinOrder.Paymentdetails.cardInfo:type_name -> order.payin.PayinOrder.Cardinfo
+	21, // 15: order.payin.PayinOrder.Fees.merFee:type_name -> order.payin.PayinOrder.Merfee
+	3,  // 16: order.payin.payin.OrderAndPay:input_type -> order.payin.PayinRequest
+	6,  // 17: order.payin.payin.OrderQuery:input_type -> order.payin.PayinQueryRequest
+	9,  // 18: order.payin.payin.PayinDetail:input_type -> order.payin.PayinDetailRequest
+	0,  // 19: order.payin.payin.OrderQueryPage:input_type -> order.payin.PayinQueryPageRequest
+	5,  // 20: order.payin.payin.OrderAndPay:output_type -> order.payin.PayinResponse
+	7,  // 21: order.payin.payin.OrderQuery:output_type -> order.payin.PayinQueryResponse
+	10, // 22: order.payin.payin.PayinDetail:output_type -> order.payin.PayinDetailResponse
+	2,  // 23: order.payin.payin.OrderQueryPage:output_type -> order.payin.PayinQueryPageResponse
+	20, // [20:24] is the sub-list for method output_type
+	16, // [16:20] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_payin_proto_init() }
@@ -2363,7 +2493,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinRequest_Cardinfo); i {
+			switch v := v.(*PayinDetailRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2375,7 +2505,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinRequest_Buyerinfo); i {
+			switch v := v.(*PayinDetailResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2387,7 +2517,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinRequest_Paymentdetail); i {
+			switch v := v.(*PayinRequest_Cardinfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2399,7 +2529,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinRequest_Goodsdetails); i {
+			switch v := v.(*PayinRequest_Buyerinfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2411,7 +2541,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinRequest_Shippinginfo); i {
+			switch v := v.(*PayinRequest_Paymentdetail); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2423,7 +2553,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinRequest_Billinginfo); i {
+			switch v := v.(*PayinRequest_Goodsdetails); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2435,7 +2565,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinRequest_Riskparams); i {
+			switch v := v.(*PayinRequest_Shippinginfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2447,7 +2577,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinRequest_Separateaccountinfo); i {
+			switch v := v.(*PayinRequest_Billinginfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2459,7 +2589,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinOrder_Cardinfo); i {
+			switch v := v.(*PayinRequest_Riskparams); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2471,7 +2601,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinOrder_Paymentdetails); i {
+			switch v := v.(*PayinRequest_Separateaccountinfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2483,7 +2613,7 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PayinOrder_Merfee); i {
+			switch v := v.(*PayinOrder_Cardinfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2495,6 +2625,30 @@ func file_payin_proto_init() {
 			}
 		}
 		file_payin_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PayinOrder_Paymentdetails); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_payin_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PayinOrder_Merfee); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_payin_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PayinOrder_Fees); i {
 			case 0:
 				return &v.state
@@ -2513,7 +2667,7 @@ func file_payin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_payin_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
