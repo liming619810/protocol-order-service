@@ -35,10 +35,10 @@ message Pagination {
 }
 
 message PayinQueryPageResponse {
-  message Items { repeated PayinOrder payinOrder = 1; }
-  BaseResponse baseResponse = 1;
-  Items items = 2;
-  Pagination pagination = 3;
+  int32 code = 1; // 返回码
+  string msg = 2; // 错误信息
+  repeated PayinOrder items = 3;
+  Pagination pagination = 4;
 }
 
 message PayinRequest {
