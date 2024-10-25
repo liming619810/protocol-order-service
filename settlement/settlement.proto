@@ -12,15 +12,12 @@ service settlement {
 message QueryPageRequest {
   int32 page = 1;
   int32 pageSize = 2;
-  repeated int32 orderStatuses = 3; // [0, 1, 2] 数组格式
-  string merchantNo = 4;
-  string outTradeNo = 5;
-  int64 userId = 6;  // 商户下的用户id
-  int64 orderId = 7; // 订单ID
-  int64 createBegin = 8;
-  int64 createEnd = 9;
-  int64 updateBegin = 10;
-  int64 updateEnd = 11;
+  repeated int32 settlementStatus = 3; // [0, 1, 2] 数组格式
+  string accountSubject = 4;           // 账户主体
+  string merchantNo = 5;
+  string country = 6;
+  int64 settlementOrderId = 7;
+  int64 settlementDay = 8;
 }
 
 message Pagination {
@@ -59,7 +56,7 @@ message SettlementOrder {
   string RemainingSettlementAmount = 5; // 剩余可结算金额
   string Currency = 6;      // 记账币种,币种英文缩写(3个字母)
   int64 SettlementTime = 7; // 订单结算时间 精确到毫秒
-  // 换汇方式(0:'无状态',1:'结算日换汇',2:'订单日换汇')
+  // 换汇方式(0:无状态,1:结算日换汇,2:订单日换汇)
   int32 PaymentExchangeType = 8;
   string ExchangeRate = 9; // 结算汇率
   string Country = 10;     // 交易国家,国家名称英文缩写(2个字母)
