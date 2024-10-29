@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package order.balance;
+
+option go_package = "../balance";
+
+service balance {
+  // 系统余额
+  rpc SystemBalance(SystemBalanceRequest) returns (SystemBalanceResponse) {}
+  // 商户余额
+  rpc MerchantBalance(MerchantBalanceRequest)
+      returns (MerchantBalanceResponse) {}
+}
+
+message SystemBalanceRequest {
+  int32 page = 1;
+  int32 pageSize = 2;
+  string currency = 3;
+}
+
+message SystemBalanceItem {
+  int64 accountId = 1;
+  string accountName = 2;
+  string currency = 3;
+}
+
+message SystemBalanceResponse {
+  int32 code = 1;
+  string msg = 2;
+  repeated SystemBalanceItem Items = 3;
+}
+
+message MerchantBalanceRequest {
+  int32 page = 1;
+  int32 pageSize = 2;
+  int64 merchantId = 3;
+  string currency = 4;
+}
+
+message MerchantBalanceItem {
+  int64 merchantId = 1;
+  int32 accountType = 2;
+  string currency = 3;
+  string balance = 4;
+}
+
+message MerchantBalanceResponse {
+  int32 code = 1;
+  string msg = 2;
+  repeated MerchantBalanceItem Items = 3;
+}
