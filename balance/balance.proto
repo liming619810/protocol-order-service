@@ -28,6 +28,14 @@ message SystemBalanceResponse {
   int32 code = 1;
   string msg = 2;
   repeated SystemBalanceItem Items = 3;
+  Pagination pagination = 4;
+}
+
+message Pagination {
+  int32 pageSize = 1;
+  int32 page = 2;
+  int32 currentPage = 3;
+  int32 total = 4;
 }
 
 message MerchantBalanceRequest {
@@ -48,4 +56,5 @@ message MerchantBalanceResponse {
   int32 code = 1;
   string msg = 2;
   repeated MerchantBalanceItem Items = 3;
+  Pagination pagination = 4;
 }
