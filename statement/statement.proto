@@ -7,18 +7,16 @@ option go_package = "../statement";
 service statement {
   // 新增 收单
   rpc PageQuery(StatementPageRequest) returns (StatementPageResponse) {}
-  // // 系统余额
-  // rpc (StatementPageRequest) returns (StatementPageResponse) {}
 }
 
 message StatementPageRequest {
   int32 page = 1;
   int32 pageSize = 2;
-  string currency = 3;
+  int64 payinOrderID = 3;
 }
 
 message StatementItem {
-  int32 statementId = 1;
+  int64 OrderId = 1;
   int64 accountId = 2;
   int32 accountType = 3;
   int32 financeCode = 4;
