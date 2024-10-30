@@ -12,7 +12,7 @@ service statement {
 message StatementPageRequest {
   int32 page = 1;
   int32 pageSize = 2;
-  int64 payinOrderID = 3;
+  int64 OrderID = 3;
 }
 
 message StatementItem {
