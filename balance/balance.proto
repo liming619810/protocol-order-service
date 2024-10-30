@@ -15,13 +15,15 @@ service balance {
 message SystemBalanceRequest {
   int32 page = 1;
   int32 pageSize = 2;
-  string currency = 3;
+  int32 accountId = 3;
+  string currency = 4;
 }
 
 message SystemBalanceItem {
   int64 accountId = 1;
   string accountName = 2;
-  string currency = 3;
+  string balance = 3;
+  string currency = 4;
 }
 
 message SystemBalanceResponse {
