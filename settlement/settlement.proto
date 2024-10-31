@@ -34,11 +34,6 @@ message QueryPageResponse {
   Pagination pagination = 4;
 }
 
-message BaseResponse {
-  int32 code = 1; // 返回码
-  string msg = 2; // 错误信息
-}
-
 message QueryRequest { int64 selltementID = 1; }
 
 message QueryResponse {
@@ -48,8 +43,8 @@ message QueryResponse {
 }
 
 message SettlementOrder {
-  int64 SettlementId = 1; // 订单ID(雪花算法)
-  int64 MerchantId = 2; // 商户号，商户与PayerMax业务签约时生成的唯一标识
+  string SettlementId = 1; // 订单ID(雪花算法)
+  string MerchantId = 2; // 商户号，商户与PayerMax业务签约时生成的唯一标识
   // 订单状态(0:无状态,1:待结算,2:结算中,3:结算完成,4:结算失败)
   int32 SettlementStatus = 3;
   string SettlementAmount = 4;          // 应结金额

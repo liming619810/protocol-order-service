@@ -48,7 +48,7 @@ message MerchantBalanceRequest {
 }
 
 message MerchantBalanceItem {
-  int64 merchantId = 1;
+  string merchantId = 1;
   int32 accountType = 2;
   string currency = 3;
   string balance = 4;

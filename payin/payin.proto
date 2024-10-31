@@ -186,7 +186,7 @@ message PayinOrder {
   }
 
   message Fees { Merfee merFee = 1; }
-
+  string order_id = 20;
   string reference = 1;
   string country = 2;
   string totalAmount = 3;
