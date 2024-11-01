@@ -201,6 +201,7 @@ message PayinOrder {
   Fees fees = 12;
   string status = 13;
   string resultMsg = 14;
+  string createTime = 15;
 }
 
 message PayinDetailRequest { int64 orderId = 1; }
